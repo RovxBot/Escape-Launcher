@@ -25,4 +25,5 @@
     <string name="hideScreenTimePage" translatable="false">HideScreenTimePage</string>
     <string name="showHiddenAppsInSearch" translatable="false">ShowHiddenAppsInSearch</string>
     <string name="bottomSearch" translatable="false">bottomSearch</string>
+    <string name="lockOrientation" translatable="false">LockOrientation</string>
 </resources>

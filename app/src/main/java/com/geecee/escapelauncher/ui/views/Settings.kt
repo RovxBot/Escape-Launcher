@@ -317,6 +317,26 @@ fun MainSettingsPage(
             onClick = { navController.navigate("chooseFont") })
 
         SettingsSwitch(
+            label = stringResource(id = R.string.lock_orientation),
+            checked = getBooleanSetting(
+                mainAppModel.getContext(), stringResource(R.string.lockOrientation), true
+            ),
+            onCheckedChange = { locked ->
+                toggleBooleanSetting(
+                    mainAppModel.getContext(),
+                    locked,
+                    mainAppModel.getContext().resources.getString(R.string.lockOrientation)
+                )
+                // Apply immediately
+                activity.requestedOrientation = if (locked) {
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                } else {
+                    ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                }
+            }
+        )
+
+        SettingsSwitch(
             label = stringResource(id = R.string.haptic_feedback),
             isBottomOfGroup = true,
             checked = getBooleanSetting(

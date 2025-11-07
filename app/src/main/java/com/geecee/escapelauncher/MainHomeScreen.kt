@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -96,6 +97,22 @@ class MainHomeScreen : ComponentActivity() {
         // Make full screen
         enableEdgeToEdge()
         configureFullScreenMode()
+
+        // Apply orientation preference (default: locked portrait)
+        try {
+            val lockOrientationPref = getBooleanSetting(
+                this,
+                this.resources.getString(R.string.lockOrientation),
+                true
+            )
+            requestedOrientation = if (lockOrientationPref) {
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            }
+        } catch (ex: Exception) {
+            Log.e("ERROR", "Failed to apply orientation preference: ${ex.message}")
+        }
 
         // Set up the screen time tracking
         ScreenTimeManager.initialize(this)
