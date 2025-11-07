@@ -10,6 +10,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
+import android.content.pm.ActivityInfo
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
